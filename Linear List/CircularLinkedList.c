@@ -83,12 +83,31 @@ Status BuildCircularLinkedList(LinkList *L,int num)
     return OK;
 }
 
+/*判断链表L中是否有环*/
+int hasLoop(LinkList L)
+{
+    LinkList p=L;
+    LinkList q=L;
+
+    while (p!=NULL&&q!=NULL&&q->next!=NULL)
+    {
+        p=p->next;//p每次往后指一个
+        if(q->next!=NULL)
+            q=q->next->next;//q每次往后指两个
+        //printf("p:%d, q:%d\n",p->data,q->data);
+        if(q==p)//q比往前指的快，若链表中有环，则q和p必定会相遇
+            return 1;
+    }
+    return 0;
+}
+
 int main()
 {
     LinkList list;
     InitList(&list);
-    CreateList(&list,5);
+    CreateList(&list,10);
     PrintList(&list);
-    BuildCircularLinkedList(&list,3);
+    BuildCircularLinkedList(&list,5);
+    hasLoop(list);
     return 0;
 }

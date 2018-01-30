@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <time.h>
+#include <stdlib.h>
 
 #define OK 1
 #define ERROR 0
